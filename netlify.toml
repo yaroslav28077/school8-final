@@ -12,3 +12,9 @@
   from = "/appeal"
   to = "/appeal.html"
   status = 200
+
+[[redirects]]
+  from = "/yarik"
+  to = "/ostapenko/"
+  status = 301
+
