@@ -1,0 +1,131 @@
+{
+  "menu_items": [
+    {
+      "label": "🏠 Головна",
+      "url": "/",
+      "dropdown_type": "none"
+    },
+    {
+      "label": "Про гімназію",
+      "dropdown_type": "mega",
+      "columns": [
+        {
+          "links": [
+            { "label": "Адміністрація", "is_heading": true },
+            { "label": "👔 Управління", "url": "/management/" },
+            { "label": "🔍 Прозорість", "url": "/prozorist/" },
+            { "label": "📂 Документи", "url": "/documents/" }
+          ]
+        },
+        {
+          "links": [
+            { "label": "Історія", "is_heading": true },
+            { "label": "📜 Історія", "url": "/history/" },
+            { "label": "🕯️ Сторінка пам'яті", "url": "/memory/" },
+            { "label": "🏛️ Віртуальний меморіал", "url": "https://museum.lubnyrada.gov.ua/memorial/", "target_blank": true },
+            { "label": "Спільноти", "is_heading": true },
+            { "label": "👨‍🏫 Професійні спільноти вчителів", "url": "/teachers/" },
+            { "label": "📖 Суспільно-гуманітарні науки", "url": "/humanities/" },
+            { "label": "🔬 Природничо-математичні науки", "url": "/math-science/" },
+            { "label": "🎨 Художньо-оздоровчий цикл", "url": "/arts-health/" },
+            { "label": "👥 Класні керівники", "url": "/class-teachers/" },
+            { "label": "🎒 Початкова школа", "url": "/primary-school/" }
+          ]
+        },
+        {
+          "links": [
+            { "label": "Соціально-психологічна служба", "is_heading": true },
+            { "label": "🤝 Соц. педагог", "url": "/social-pedagogue/" },
+            { "label": "🧠 Психолог", "url": "/psychologist/" },
+            { "label": "💙 Підтримка", "url": "/psychology-support/" },
+            { "label": "🛑 Антибулінг", "url": "/antibullying/", "is_danger": true },
+            { "label": "🛡️ Протидія насильству", "url": "/protydiya-nasylstvu/" },
+            { "label": "Центри", "is_heading": true },
+            { "label": "📚 Бібліотека", "url": "/library/" },
+            { "label": "🏥 Медична служба", "url": "/medical-service/" }
+          ]
+        },
+        {
+          "links": [
+            { "label": "Інформація", "is_heading": true },
+            { "label": "👥 Кадри", "url": "/staff/" },
+            { "label": "💼 Вакансії", "url": "/vacancies/" },
+            { "label": "⏰ Режим роботи", "url": "/working-mode/" },
+            { "label": "📍 Контакти", "url": "/contacts/" },
+            { "label": "📰 Facebook", "url": "https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/", "target_blank": true }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Освітнє середовище",
+      "dropdown_type": "simple",
+      "links": [
+        { "label": "🎓 Академічна доброчесність", "url": "/academic-integrity/" },
+        { "label": "📉 Внутрішня система якості", "url": "https://drive.google.com/file/d/14JuSN1j2vk4cy-jlR9fAGMiRzjNHjoCp/view?usp=sharing", "target_blank": true },
+        { "label": "🎖️ Атестація", "url": "/atestacia/" },
+        { "label": "📊 Самоаналіз освітньої діяльності", "url": "/samoanaliz/" },
+        { "label": "🔬 Наукові роботи", "url": "/scientific-works/" },
+        { "label": "🤝 Інклюзивна освіта", "url": "/inclusive-education/" }
+      ]
+    },
+    {
+      "label": "Виховна робота",
+      "dropdown_type": "simple",
+      "links": [
+        { "label": "🗳️ Самоврядування", "url": "/student-government/" },
+        { "label": "🌻 Напрямки виховної роботи", "url": "/educational-work/" },
+        { "label": "🎨 Гуртки та секції", "url": "/circles/" },
+        { "label": "💡 Хакатон", "url": "/hackathon/" }
+      ]
+    },
+    {
+      "label": "Учням",
+      "dropdown_type": "mega",
+      "columns": [
+        {
+          "links": [
+            { "label": "Початкова школа", "is_heading": true },
+            { "label": "🗓️ Розклад", "url": "/schedule-primary/" },
+            { "label": "📚 Програми", "url": "/programs-primary/" },
+            { "label": "📖 Підручники", "url": "/books-primary/" },
+            { "label": "📊 Критерії оцінювання", "url": "/evaluation-criteria-primary/" }
+          ]
+        },
+        {
+          "links": [
+            { "label": "Середня школа", "is_heading": true },
+            { "label": "🗓️ Розклад", "url": "/schedule-middle/" },
+            { "label": "📚 Програми", "url": "/programs-middle/" },
+            { "label": "📖 Підручники", "url": "/books-middle/" },
+            { "label": "📊 Критерії оцінювання", "url": "/evaluation-criteria/" }
+          ]
+        },
+        {
+          "links": [
+            { "label": "Важливе", "is_heading": true },
+            { "label": "⚖️ Декларація прав та обовʼязків", "url": "/rights-students/" },
+            { "label": "💻 Щоденник", "url": "/electronic-diary/" },
+            { "label": "🌐 Дистанційне", "url": "/distance-learning/" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Батькам",
+      "dropdown_type": "simple",
+      "links": [
+        { "label": "⚖️ Права батьків", "url": "/parents-rights/" },
+        { "label": "🗺️ Територія обслуговування", "url": "/territory/" },
+        { "label": "📝 Умови вступу до 1 класу", "url": "/admission/" },
+        { "label": "ℹ️ Інформація", "url": "/parents-info/" }
+      ]
+    },
+    {
+      "label": "💬 Звернення",
+      "url": "/appeal/",
+      "dropdown_type": "none",
+      "style_class": "appeal-nav-btn"
+    }
+  ]
+}

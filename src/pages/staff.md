@@ -1,0 +1,8 @@
+---
+title: "Кадровий склад"
+layout: "layout.njk"
+permalink: "/staff/"
+description: "Кадровий склад та якісні показники педагогічного колективу Української класичної гімназії Лубенської міської ради."
+editable: true
+---
+<section class="section"><div class="container"><h1 class="page-title">Кадровий склад</h1><div class="staff-summary"><div class="main-stat"><span class="stat-number">32</span><span class="stat-label">Всього педагогічних працівників у закладі</span></div><h3 class="staff-subtitle">Якісний склад педагогічного колективу:</h3><ul class="stats-list"><li><span><span class="check-icon">✔</span> Мають вищу освіту</span><span class="count-badge green">32</span></li><li><span><span class="check-icon">✔</span> Учителів вищої кваліфікаційної категорії</span><span class="count-badge">21</span></li><li><span><span class="check-icon">✔</span> Учителів першої кваліфікаційної категорії</span><span class="count-badge">7</span></li><li><span><span class="check-icon">✔</span> Учителів другої кваліфікаційної категорії</span><span class="count-badge">2</span></li><li><span><span class="check-icon">✔</span> Мають звання «Учитель-методист»</span><span class="count-badge">7</span></li><li><span><span class="check-icon">✔</span> Мають звання «Старший учитель»</span><span class="count-badge">10</span></li></ul></div><div style="margin-top: 30px; text-align: center;"><a href="https://drive.google.com/file/d/1eGs-od54dwYZ6lo-CxE0ZEgtHjOt50JL/view?usp=sharing" target="_blank" class="doc-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; max-width: 400px; margin: 0 auto;"><span class="doc-icon">📂</span> Кадрове забезпечення</a></div></div></section>

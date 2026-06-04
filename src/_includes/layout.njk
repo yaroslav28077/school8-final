@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or "Українська класична гімназія — м. Лубни" }}</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="{{ description or 'Українська класична гімназія Лубенської міської ради — офіційний сайт. Новини, розклад, документи.' }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ title or 'Українська класична гімназія — м. Лубни' }}">
+    <meta property="og:description" content="{{ description or 'Українська класична гімназія Лубенської міської ради — офіційний сайт. Новини, розклад, документи.' }}">
+    <meta property="og:image" content="/assets/img/logo.png">
+    <meta property="og:url" content="https://lubny-ukg.co.ua{{ page.url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Українська класична гімназія — м. Лубни">
+    <meta property="og:locale" content="uk_UA">
+    
+    <link rel="canonical" href="https://lubny-ukg.co.ua{{ page.url }}">
+    
+    <!-- Фавікон -->
+    <link rel="icon" href="/assets/img/logo.png" type="image/png">
+    
+    <!-- Шрифти Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome (іконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Основний файл стилів -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Сторінкові вбудовані стилі (якщо є) -->
+    {% if page_styles %}
+    <style>
+        {{ page_styles | safe }}
+    </style>
+    {% endif %}
+</head>
+<body class="inner-page">
+
+    <!-- Хедер сайту -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="/" class="logo">
+                <img src="/assets/img/logo.png" alt="Лого" class="logo-img">
+                <div class="logo-text"><span>Українська класична гімназія</span><small>Лубенської міської ради</small></div>
+            </a>
+            
+            <div class="burger" id="burger-btn">
+                <span></span><span></span><span></span>
+            </div>
+
+            <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+                <div class="close-menu-btn" id="close-btn" aria-label="Close menu">&times;</div>
+
+                <div class="nav-mobile-header">
+                    <a href="/" class="logo">
+                        <img src="/assets/img/logo.png" alt="Лого" class="logo-img">
+                        <div class="logo-text"><span>Українська класична гімназія</span><small>Лубенської міської ради</small></div>
+                    </a>
+                </div>
+
+                <ul class="nav-list" role="menubar">
+                    {% for item in navigation.menu_items %}
+                        {% if item.dropdown_type == "none" %}
+                            <li class="nav-item">
+                                <a href="{{ item.url }}" class="nav-link {% if item.style_class %}{{ item.style_class }}{% endif %}">{{ item.label }}</a>
+                            </li>
+                        {% elif item.dropdown_type == "simple" %}
+                            <li class="nav-item dropdown" role="none">
+                                <span class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">{{ item.label }} <span class="arrow">▾</span></span>
+                                <div class="dropdown-menu simple-dropdown" role="menu">
+                                    {% for link in item.links %}
+                                        <a href="{{ link.url }}" {% if link.target_blank %}target="_blank"{% endif %} {% if link.is_danger %}class="link-danger"{% endif %}>{{ link.label }}</a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                        {% elif item.dropdown_type == "mega" %}
+                            <li class="nav-item dropdown" role="none">
+                                <span class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">{{ item.label }} <span class="arrow">▾</span></span>
+                                <div class="dropdown-menu mega-menu menu-{{ item.columns | length }}-col" role="menu">
+                                    {% for col in item.columns %}
+                                        <div class="mega-column">
+                                            {% for link in col.links %}
+                                                {% if link.is_heading %}
+                                                    <h4>{{ link.label }}</h4>
+                                                {% else %}
+                                                    <a href="{{ link.url }}" {% if link.target_blank %}target="_blank"{% endif %} {% if link.is_danger %}class="link-danger"{% endif %}>{{ link.label }}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основний контент сторінки -->
+    <main>
+        {% if blocks %}
+            {% import "blocks.njk" as builder %}
+            {{ builder.render(blocks) }}
+        {% else %}
+            {{ content | safe }}
+        {% endif %}
+    </main>
+
+    {% if blocks %}
+        {% import "blocks.njk" as builder %}
+        {{ builder.render_modals(blocks) }}
+    {% endif %}
+
+    <!-- Футер сайту -->
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Column 1: Info -->
+                    <div class="footer-col info-col">
+                        <div class="footer-brand">
+                            <img src="/assets/img/logo.png" alt="Логотип" class="footer-logo">
+                            <div class="brand-text">
+                                <h3>УКРАЇНСЬКА КЛАСИЧНА ГІМНАЗІЯ</h3>
+                                <p>Лубенської міської ради Лубенського району Полтавської області</p>
+                            </div>
+                        </div>
+                        <p class="footer-desc">Сучасний освітній простір, де кожна дитина розкриває свій потенціал.</p>
+                        <div class="footer-socials">
+                            <a href="https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/" target="_blank" class="social-btn facebook">
+                                <span class="fb-icon">f</span> Facebook
+                            </a>
+                            <a href="mailto:school8lub_@ukr.net" class="social-btn email">
+                                <span class="email-icon">✉️</span> Написати нам
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Contacts -->
+                    <div class="footer-col contacts-col">
+                        <h4 class="footer-heading">КОНТАКТИ</h4>
+                        <ul class="footer-contacts-list">
+                            <li>
+                                <span class="icon">📍</span>
+                                <span>Україна, Полтавська область,<br> м.Лубни, просп. Володимирський, 104/1</span>
+                            </li>
+                            <li>
+                                <span class="icon">📞</span>
+                                <a href="tel:0536177507">(05361) 77-507</a>
+                            </li>
+                            <li>
+                                <span class="icon">📧</span>
+                                <a href="mailto:school8lub_@ukr.net">school8lub_@ukr.net</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Map -->
+                    <div class="footer-col map-col">
+                        <h4 class="footer-heading">МИ НА КАРТІ</h4>
+                        <div class="footer-map-wrapper">
+                            <iframe 
+                                src="https://maps.google.com/maps?q=Лубенська+загальноосвітня+школа+№8&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                                width="100%" 
+                                height="200" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright-bar">
+                    <p>&copy; 2026 Українська класична гімназія. Всі права захищені.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипти -->
+    <script src="/assets/js/components.js"></script>
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[build]
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+
+# Ensure HTML pages are served correctly (disable Pretty URLs stripping .html)
+[[redirects]]
+  from = "/appeal-success"
+  to = "/appeal-success.html"
+  status = 200
+
+[[redirects]]
+  from = "/appeal"
+  to = "/appeal.html"
+  status = 200

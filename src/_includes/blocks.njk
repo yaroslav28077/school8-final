@@ -1,0 +1,1287 @@
+{# src/_includes/blocks.njk #}
+
+{% macro render(blocks) %}
+  {% for block in blocks %}
+    {# 1. Слайдер / Банер #}
+    {% if block.type == "hero_block" %}
+      {% if block.is_slider %}
+        <section class="hero">
+          <div class="hero-slider">
+            {% if block.slides %}
+              {% for slide in block.slides %}
+                <div class="slide {% if loop.first %}active{% endif %}" style="background-image: url('{{ slide }}');"></div>
+              {% endfor %}
+            {% else %}
+              <div class="slide active" style="background-image: url('/assets/img/hero-slide-1.jpg');"></div>
+              <div class="slide" style="background-image: url('/assets/img/hero-slide-2.jpg');"></div>
+              <div class="slide" style="background-image: url('/assets/img/hero-slide-3.jpg');"></div>
+              <div class="slide" style="background-image: url('/assets/img/hero-slide-4.jpg');"></div>
+            {% endif %}
+          </div>
+          <div class="hero-overlay"></div>
+          <div class="container hero-content">
+            <h1>{{ block.title }}</h1>
+            <p>{{ block.subtitle }}</p>
+            {% if block.btn_text and block.btn_url %}
+              <a href="{{ block.btn_url }}" class="btn">{{ block.btn_text }}</a>
+            {% endif %}
+          </div>
+        </section>
+      {% else %}
+        <section class="appeal-hero" style="background: {{ block.bg_gradient or 'linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%)' }};">
+          <div class="container">
+            {% if block.badge %}
+              <div class="appeal-hero-badge">
+                {% if block.badge_icon %}<i class="{{ block.badge_icon }}"></i> {% endif %}{{ block.badge }}
+              </div>
+            {% endif %}
+            <h1>{{ block.title }}</h1>
+            <p>{{ block.subtitle }}</p>
+          </div>
+        </section>
+      {% endif %}
+
+    {# 2. Відео-секція #}
+    {% elif block.type == "video_block" %}
+      <section class="section video-section">
+        <div class="container">
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          <div class="video-wrapper">
+            <video id="school-video" class="school-video" {% if block.poster %}poster="{{ block.poster }}"{% endif %} controls autoplay muted loop playsinline preload="metadata">
+              <source src="{{ block.video_url }}" type="video/mp4">
+              Ваш браузер не підтримує відтворення відео.
+            </video>
+            <div class="video-play-overlay" id="video-play-overlay">
+              <button class="video-play-btn" id="video-play-btn" aria-label="Відтворити відео про гімназію">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+              <p class="video-play-label">{{ block.overlay_text or 'Дивитися відео про гімназію' }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {# 3. Блок Facebook #}
+    {% elif block.type == "facebook_block" %}
+      <section class="section news-section">
+        <div class="container">
+          <!-- Facebook SDK -->
+          <div id="fb-root"></div>
+          <script async defer crossorigin="anonymous" src="https://connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v18.0" nonce="abc12345"></script>
+
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          <div class="news-layout">
+            <div class="news-intro">
+              {{ block.content | markdown | safe }}
+              {% if block.btn_text and block.btn_url %}
+                <a href="{{ block.btn_url }}" target="_blank" class="fb-cta-btn">{{ block.btn_text }}</a>
+              {% endif %}
+            </div>
+            <div class="facebook-wrapper">
+              <div class="fb-page"
+                  data-href="{{ block.btn_url or 'https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/' }}"
+                  data-tabs="timeline" data-width="500" data-height="500" data-small-header="false"
+                  data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                  <blockquote cite="{{ block.btn_url or 'https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/' }}" class="fb-xfbml-parse-ignore">
+                      <a href="{{ block.btn_url or 'https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/' }}">Українська класична гімназія</a>
+                  </blockquote>
+              </div>
+              <a href="{{ block.btn_url or 'https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/' }}" target="_blank" class="fb-overlay-btn">
+                {{ block.overlay_btn_text or 'Читати всі новини на Facebook ➔' }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {# 4. Текстовий блок #}
+    {% elif block.type == "text_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          <div class="text-content">
+            {{ block.content | markdown | safe }}
+          </div>
+        </div>
+      </section>
+
+    {# 5. Блок "Зображення + Текст" #}
+    {% elif block.type == "text_image_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          <div class="director-container {% if block.align_right %}align-right{% endif %}">
+            <div class="director-photo-wrapper">
+              <img src="{{ block.image }}" alt="{{ block.image_alt or 'Фото' }}" class="director-photo" onerror="this.src='/assets/img/logo.png'">
+              {% if block.image_caption %}
+                <div class="director-name">{{ block.image_caption }}</div>
+              {% endif %}
+              {% if block.image_subcaption %}
+                <div class="director-title">{{ block.image_subcaption }}</div>
+              {% endif %}
+            </div>
+            <div class="director-text">
+              {{ block.content | markdown | safe }}
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {# 6. Список карток #}
+    {% elif block.type == "card_list" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          {% if block.subtitle %}<p class="teachers-intro">{{ block.subtitle }}</p>{% endif %}
+
+          {% if block.card_style == "link" %}
+            <div class="card-grid">
+              {% for card in block.cards %}
+                <a href="{{ card.url }}" class="card card-center teacher-card">
+                  <div class="card-icon">{{ card.icon }}</div>
+                  <div class="card-title">{{ card.title }}</div>
+                  <div class="card-desc">{{ card.desc }}</div>
+                </a>
+              {% endfor %}
+            </div>
+
+          {% elif block.card_style == "teacher" %}
+            <div class="card-grid">
+              {% for card in block.cards %}
+                <div class="card">
+                  <img src="{{ card.photo or '/assets/img/logo.png' }}" alt="{{ card.name }}" class="card-photo" onerror="this.src='/assets/img/logo.png'">
+                  <div class="card-content">
+                    <div class="card-title">{{ card.name | replace("\n", "<br>") | safe }}</div>
+                    <div class="card-subtitle">{{ card.subject }}</div>
+                    {% if card.class_name %}
+                      <div class="class-badge">{{ card.class_name }}</div>
+                    {% endif %}
+                    <div class="card-desc">
+                      {% if card.category %}<span class="card-badge">{{ card.category }}</span>{% endif %}
+                      {% if card.title_badge %}<span class="card-badge">{{ card.title_badge }}</span>{% endif %}
+                      {% if card.experience %}
+                        <strong>Стаж роботи: {{ card.experience }}</strong>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+          {% elif block.card_style == "admin_director" %}
+            <div class="director-wrapper">
+              {% for card in block.cards %}
+                <div class="card admin-card-large">
+                  <div class="admin-photo-container">
+                    <img src="{{ card.photo or '/assets/img/logo.png' }}" alt="{{ card.name }}"
+                         class="card-photo admin-photo"
+                         style="object-fit: cover; object-position: center 15%; transform: scale(1.05);"
+                         onerror="this.src='/assets/img/logo.png'">
+                  </div>
+                  <div class="card-content" style="padding: 8px 10px; min-height: auto;">
+                    <div class="card-title" style="margin-bottom: 2px;">{{ card.name | replace("\n", "<br>") | safe }}</div>
+                    <div class="card-subtitle" style="margin-bottom: 0;">{{ card.subject }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+          {% elif block.card_style == "admin_deputies" %}
+            <div class="deputies-wrapper">
+              {% for card in block.cards %}
+                <div class="card admin-card-large card-top-orange">
+                  <div class="admin-photo-container">
+                    <img src="{{ card.photo or '/assets/img/logo.png' }}" alt="{{ card.name }}"
+                         class="card-photo admin-photo"
+                         style="object-position: center 15%;"
+                         onerror="this.src='/assets/img/logo.png'">
+                  </div>
+                  <div class="card-content">
+                    <div class="card-title">{{ card.name | replace("\n", "<br>") | safe }}</div>
+                    <div class="card-subtitle text-orange">{{ card.subject }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+          {% elif block.card_style == "class_teacher" %}
+            <div class="card-grid">
+              {% for card in block.cards %}
+                <div class="card" style="border-top-color: var(--accent-orange);">
+                  <div class="class-badge-large">{{ card.class_name }}</div>
+                  <img src="{{ card.photo or '/assets/img/logo.png' }}" alt="{{ card.name }}" class="card-photo" onerror="this.src='/assets/img/logo.png'">
+                  <div class="card-content">
+                    <div class="card-title">{{ card.name | replace("\n", "<br>") | safe }}</div>
+                    <div class="card-subtitle">{{ card.subtitle or 'Класний керівник' }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+          {% elif block.card_style == "info" %}
+            <div class="info-grid">
+              {% for card in block.cards %}
+                <div class="info-card {{ card.card_color_class }}">
+                  <div class="info-title">
+                    {% if card.title_icon %}<span class="info-title-icon">{{ card.title_icon }}</span>{% endif %}
+                    {{ card.title }}
+                  </div>
+                  {% if card.desc %}
+                    <p class="bully-description">{{ card.desc | markdownInline | safe }}</p>
+                  {% endif %}
+                  {% if card.bullets %}
+                    <ul class="bullet-list">
+                      {% for b in card.bullets %}
+                        <li>{{ b | markdownInline | safe }}</li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% elif block.card_style == "direction" %}
+            <div class="directions-grid">
+              {% for card in block.cards %}
+                <div class="direction-card">
+                  <span class="icon-large">{{ card.icon }}</span>
+                  <div class="direction-title">{{ card.title }}</div>
+                  <div class="direction-desc">{{ card.desc }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+    {# 7. Посилання на документи #}
+    {% elif block.type == "docs_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          
+          {% if block.docs_style == "numbered" %}
+            <div class="links-container">
+              {% for doc in block.documents %}
+                <a href="{{ doc.url }}" target="_blank" class="doc-link">
+                  <div class="doc-link-col">
+                    <span>{% if doc.icon %}<span class="doc-icon">{{ doc.icon }}</span> {% endif %}{{ doc.name }}</span>
+                    {% if doc.date %}<small class="doc-date">{{ doc.date }}</small>{% endif %}
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+
+          {% elif block.docs_style == "simple" %}
+            <div class="docs-section">
+              {% for doc in block.documents %}
+                <a href="{{ doc.url }}" target="_blank" class="doc-alert-card">
+                  <div class="doc-alert-card-inner">
+                    <span class="doc-icon">{{ doc.icon or '📄' }}</span>
+                    <span class="doc-name">{{ doc.name }}</span>
+                  </div>
+                  <span class="doc-arrow">➝</span>
+                </a>
+              {% endfor %}
+            </div>
+
+          {% elif block.docs_style == "cards" %}
+            <div class="docs-grid">
+              {% for doc in block.documents %}
+                <a href="{{ doc.url }}" target="_blank" class="doc-link-card {% if doc.style_class %}{{ doc.style_class }}{% else %}general{% endif %}">
+                  <div class="doc-icon">{{ doc.icon or '📄' }}</div>
+                  <div class="doc-text">
+                    <h3>{{ doc.name }}</h3>
+                    {% if doc.desc %}<p>{{ doc.desc }}</p>{% endif %}
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          {% elif block.docs_style == "territory" %}
+            {% if block.intro %}
+              <div class="territory-intro">
+                <p>{{ block.intro }}</p>
+              </div>
+            {% endif %}
+            <div class="documents-list">
+              {% for doc in block.documents %}
+                <a href="{{ doc.url }}" target="_blank" class="doc-card">
+                  <div class="doc-icon">{{ doc.icon or '📍' }}</div>
+                  <div class="doc-content">
+                    <span class="doc-title-terr">{{ doc.name }}</span>
+                    {% if doc.desc %}
+                      <span class="doc-desc-terr">{{ doc.desc }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="doc-arrow">➝</div>
+                </a>
+              {% endfor %}
+            </div>
+            {% if block.show_map_illustration %}
+              <div class="map-illustration">
+                <div style="font-size: 5rem;">🗺️</div>
+                <p>{{ block.map_illustration_text or 'Знайдіть свою вулицю у документах вище' }}</p>
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </section>
+
+    {# 8. Вкладки з документами #}
+    {% elif block.type == "tabs_docs_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          {% if block.subtitle %}<p class="samoanaliz-intro">{{ block.subtitle }}</p>{% endif %}
+
+          <div class="year-tabs">
+            {% for tab in block.tabs %}
+              <button class="year-tab {% if loop.first %}active{% endif %}" data-year="tabsdoc-{{ tab.year | slugify }}">{{ tab.year }}</button>
+            {% endfor %}
+          </div>
+
+          {% for tab in block.tabs %}
+            <div class="year-content {% if loop.first %}active{% endif %}" id="year-tabsdoc-{{ tab.year | slugify }}">
+              <div class="links-container">
+                {% for doc in tab.documents %}
+                  <a href="{{ doc.url }}" target="_blank" class="doc-link">
+                    <div class="doc-link-col">
+                      <span>{{ doc.name }}</span>
+                      {% if doc.date %}<small class="doc-date">{{ doc.date }}</small>{% endif %}
+                    </div>
+                  </a>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+    {# 9. Блок визначення / Попередження #}
+    {% elif block.type == "definition_block" %}
+      <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+          {% if block.style == 'Червоний банер сторінки (насильство)' %}
+            <div class="page-header-alert">
+              <h1 class="alert-title">{{ block.title }}</h1>
+              <p class="alert-subtitle">{{ block.content | markdownInline | safe }}</p>
+            </div>
+          {% else %}
+            <div class="definition-box">
+              <h3 class="definition-title {% if block.style == 'Червоне попередження (корупція)' or block.is_danger %}corruption{% endif %}">{{ block.title }}</h3>
+              <p class="academic-definition-desc">{{ block.content | markdownInline | safe }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+    {# 10. Алгоритм дій #}
+    {% elif block.type == "algo_block" %}
+      <section class="section">
+        <div class="container">
+          <div class="algo-section">
+            <div class="algo-header">
+              <div class="algo-header-icon"><i class="{{ block.icon or 'fas fa-gavel' }}"></i></div>
+              <div>
+                <div class="algo-header-label">{{ block.label }}</div>
+                <h3 class="algo-header-title">{{ block.title }}</h3>
+              </div>
+            </div>
+
+            {% for step in block.steps %}
+              <div class="algo-step">
+                <div class="algo-step-num" style="background: {{ step.num_bg or 'linear-gradient(135deg, #1a3a8f, #2d5be3)' }};">{{ step.number or loop.index }}</div>
+                <div class="algo-step-body">
+                  <div class="algo-step-label">{{ step.label }}</div>
+                  <h4 class="algo-step-title" style="color: {{ step.title_color or '#1a3a8f' }};">{{ step.title }}</h4>
+                  <div class="algo-step-text">{{ step.content | markdown | safe }}</div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% if block.alert_text %}
+              <div class="algo-alert">
+                <div class="algo-alert-icon">!</div>
+                <div>{{ block.alert_text | markdown | safe }}</div>
+              </div>
+            {% endif %}
+
+            {% if block.source_name or block.footnote %}
+              <div class="algo-footer">
+                {% if block.footnote %}
+                  <span>{{ block.footnote }}</span>
+                {% endif %}
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                  {% if block.source_url %}
+                    Джерело: <a href="{{ block.source_url }}" target="_blank" class="algo-source-link">{{ block.source_name }}</a>
+                  {% else %}
+                    {{ block.source_name | markdownInline | safe }}
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+    {# 11. Блок гарячих ліній #}
+    {% elif block.type == "hotlines_block" %}
+      <section class="section" style="padding-top: 0;">
+        <div class="container">
+          <div class="hotlines-box">
+            <h2 class="hotline-section-title">{{ block.title }}</h2>
+            {% if block.subtitle %}<p>{{ block.subtitle }}</p>{% endif %}
+
+            <div class="hotline-grid">
+              {% for line in block.lines %}
+                <div class="hotline-item">
+                  <span class="hotline-number">{{ line.number }}</span>
+                  <span>{{ line.label }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {# 12. Форма звернення #}
+    {% elif block.type == "appeal_form_block" %}
+      <section class="section">
+        <div class="container">
+          <div class="appeal-container">
+            <div class="appeal-form-wrapper">
+              <h2>{{ block.title or 'Надіслати електронне звернення' }}</h2>
+              <p class="appeal-form-subtitle">{{ block.desc or 'Будь ласка, заповніть форму нижче. Всі поля є обов\'язковими для заповнення.' }}</p>
+              
+              <form name="appeal" method="POST" action="/appeal-success/" data-netlify="true" netlify-honeypot="bot-field" class="appeal-form">
+                <input type="hidden" name="form-name" value="appeal" />
+                <p style="display:none"><label>Не заповнюйте це: <input name="bot-field" /></label></p>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="lastName">Прізвище</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Іванов" required autocomplete="family-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="firstName">Ім'я</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Іван" required autocomplete="given-name">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="middleName">По батькові</label>
+                    <input type="text" id="middleName" name="middleName" placeholder="Іванович" required autocomplete="additional-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Електронна адреса</label>
+                    <input type="email" id="email" name="email" placeholder="ivan@gmail.com" required autocomplete="email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="appealType">Тип звернення</label>
+                  <select id="appealType" name="appealType" required>
+                    <option value="" disabled selected>Оберіть тип звернення</option>
+                    <option value="Заява">Заява</option>
+                    <option value="Пропозиція">Пропозиція (зауваження)</option>
+                    <option value="Скарга">Скарга</option>
+                    <option value="Запит на інформацію">Запит на інформацію</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="message">Текст звернення</label>
+                  <textarea id="message" name="message" rows="6" placeholder="Опишіть ваше питання..." required></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                  <input type="checkbox" id="agree" name="agree" required>
+                  <label for="agree">Я даю згоду на обробку моїх персональних даних згідно із законом України "Про захист персональних даних"</label>
+                </div>
+                <button type="submit" class="submit-btn" id="submit-btn">
+                  <span>{{ block.btn_text or 'Надіслати звернення' }}</span>
+                </button>
+              </form>
+            </div>
+            
+            <div class="appeal-info">
+              <h3>{{ block.info_title or 'Корисна інформація' }}</h3>
+              <div class="info-cards-stack">
+                {% for info in block.info_cards %}
+                  <div class="info-card">
+                    <h4>{{ info.title }}</h4>
+                    <p>{{ info.desc }}</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {# 13. Блок навчальних програм #}
+    {% elif block.type == "programs_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+          
+          <div class="grade-tabs">
+            {% for tab in block.tabs %}
+              <button class="grade-tab-btn {% if loop.first %}active{% endif %}" onclick="openGradeTab(event, 'grade-{{ tab.tab_name | slugify }}')">{{ tab.tab_name }}</button>
+            {% endfor %}
+          </div>
+
+          {% for tab in block.tabs %}
+            <div id="grade-{{ tab.tab_name | slugify }}" class="grade-tab-content {% if loop.first %}active{% endif %}" style="display: {% if loop.first %}block{% else %}none{% endif %};">
+              <h3 class="page-title program-subtitle">{{ tab.tab_name }}</h3>
+              <div class="programs-grid">
+                {% for prog in tab.programs %}
+                  <div class="program-card">
+                    <div class="program-header">
+                      <span>{{ prog.subject }}</span>
+                      <i class="{{ prog.icon or 'fas fa-book' }}"></i>
+                    </div>
+                    <div class="program-body">
+                      <div class="program-title">{{ prog.title }}</div>
+                      <div class="program-meta">
+                        <strong>Автори:</strong> {{ prog.authors }}
+                      </div>
+                      {% if prog.order %}<div class="program-order">{{ prog.order }}</div>{% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+    {# 14. Секція пам'яті героїв #}
+    {% elif block.type == "memory_block" %}
+      <section class="memory-hero">
+        <div class="container">
+          <span class="memory-icon">🕯️</span>
+          <h1>{{ block.title }}</h1>
+          <p class="memory-subtitle">{{ block.subtitle }}</p>
+          <p class="memory-desc">{{ block.desc }}</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="memory-cards-grid">
+            {% for hero in block.heroes %}
+              <div class="memory-card">
+                <div class="memory-card-photo">
+                  <img src="{{ hero.image }}" alt="{{ hero.name }}" onerror="this.src='/assets/img/logo.png'">
+                </div>
+                <div class="memory-card-info">
+                  <h2 class="memory-name">{{ hero.name }}</h2>
+                  <p class="memory-rank">{{ hero.rank }}</p>
+                  <p class="memory-dates">{{ hero.dates }}</p>
+                  <div class="memory-bio">
+                    {{ hero.bio | markdown | safe }}
+                    {% if hero.death %}
+                      <p class="memory-death">{{ hero.death }}</p>
+                    {% endif %}
+                    {% if hero.awards %}
+                      <div class="memory-awards">
+                        <h3>🎖️ Нагороди</h3>
+                        <p>{{ hero.awards }}</p>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      {% if block.quote %}
+        <section class="memory-quote-section">
+          <div class="container">
+            <blockquote class="memory-quote">
+              <p>{{ block.quote }}</p>
+            </blockquote>
+          </div>
+        </section>
+      {% endif %}
+
+    {# 15. Блок фінансів #}
+    {% elif block.type == "finance_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          <p class="finance-intro">{{ block.intro }}</p>
+
+          <div class="year-tabs">
+            {% for tab in block.tabs %}
+              <button class="year-tab {% if loop.first %}active{% endif %}" data-year="fin-{{ tab.year | slugify }}">{{ tab.year }} рік</button>
+            {% endfor %}
+          </div>
+
+          {% for tab in block.tabs %}
+            <div class="year-content {% if loop.first %}active{% endif %}" id="year-fin-{{ tab.year | slugify }}">
+              <div class="finance-categories">
+                {% for cat in tab.categories %}
+                  <div class="finance-card">
+                    <div class="finance-card-header">
+                      <div class="finance-card-icon">
+                        <i class="{{ cat.icon }}"></i>
+                      </div>
+                      <div class="finance-card-title">{{ cat.title }}</div>
+                    </div>
+                    <div class="finance-card-body">
+                      <div class="finance-doc-list">
+                        {% for doc in cat.documents %}
+                          {% if doc.available %}
+                            <a href="{{ doc.url }}" target="_blank" class="finance-doc-link">
+                              <div class="link-icon"><i class="{{ doc.doc_icon or 'fas fa-file-pdf' }}"></i></div>
+                              {{ doc.name }}
+                              <i class="fas fa-arrow-right link-arrow"></i>
+                            </a>
+                          {% else %}
+                            <div class="finance-doc-placeholder">
+                              <div class="link-icon"><i class="fas fa-clock"></i></div>
+                              {{ doc.name }}
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+    {# 16. Блок гуртків #}
+    {% elif block.type == "circles_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          <div class="circles-grid">
+            {% for c in block.circles %}
+              <div class="circle-card">
+                {% if c.badge_text %}
+                  <div class="badge-new" style="background: {{ c.badge_color or 'var(--accent-orange)' }};">{{ c.badge_text }}</div>
+                {% endif %}
+                <div class="circle-header" style="background: {{ c.header_bg or 'linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%)' }};">
+                  <div class="circle-title">{{ c.title }}</div>
+                  <div class="circle-subtitle">{{ c.subtitle }}</div>
+                </div>
+                <div class="circle-body">
+                  <div class="info-row">
+                    <div class="info-icon">{{ c.info_icon or '👶' }}</div>
+                    <div>{{ c.for_who | markdownInline | safe }}</div>
+                  </div>
+                  <div class="schedule-box">
+                    {{ c.schedule_desc | markdown | safe }}
+                  </div>
+                  <div class="info-row">
+                    <div class="info-icon">{{ c.leader_icon or '👩‍🏫' }}</div>
+                    <div>Керівник: <br><strong>{{ c.leader | markdownInline | safe }}</strong></div>
+                  </div>
+                  {% if c.btn_text and c.btn_url %}
+                    <a href="{{ c.btn_url }}" target="_blank" class="contact-btn">
+                      {{ c.btn_text }}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+    {# 17. Адаптивна таблиця #}
+    {% elif block.type == "table_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.headers_csv %}
+            {% set headers = block.headers_csv.split(',') %}
+            {% if block.collapsible %}
+              <div class="info-section">
+                <div class="section-header-small governance-toggle-btn" onclick="toggleParentsGovernance()">
+                  <div class="governance-title-wrapper">
+                    {% if block.collapse_icon %}<span class="governance-icon">{{ block.collapse_icon }}</span>{% endif %}
+                    <span class="governance-title">{{ block.title }}</span>
+                    <span class="governance-hint">({{ block.collapse_hint or 'Натисніть, щоб розгорнути' }})</span>
+                  </div>
+                  <i id="governance-icon" class="fas fa-chevron-down"></i>
+                </div>
+
+                <div id="parents-governance-content" class="parents-table-container" style="display: none; margin-top: 20px;">
+                  <table class="parents-table">
+                    <thead>
+                      <tr>
+                        {% for h in headers %}<th>{{ h }}</th>{% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for row in block.rows %}
+                        {% if row.cells_csv %}
+                          {% set cells = row.cells_csv.split(',') %}
+                          <tr class="{% if row.is_header_row %}head-row{% endif %}">
+                            {% for cell in cells %}
+                              <td>{{ cell | safe }}</td>
+                            {% endfor %}
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            {% else %}
+              {% if block.title %}<h2 class="page-title">{{ block.title }}</h2>{% endif %}
+              <div class="table-container">
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      {% for h in headers %}<th>{{ h }}</th>{% endfor %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in block.rows %}
+                      {% if row.cells_csv %}
+                        {% set cells = row.cells_csv.split(',') %}
+                        <tr class="{% if row.is_header_row %}head-row{% endif %}">
+                          {% for cell in cells %}
+                            <td>{{ cell | safe }}</td>
+                          {% endfor %}
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </section>
+
+    {# 18. Інформаційний блок "Нові Знання" #}
+    {% elif block.type == "nz_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.nz_style == "centered" %}
+            <div class="nz-section nz-centered-section">
+              <p class="nz-intro-text">{{ block.content | markdown | safe }}</p>
+              {% if block.btn_text and block.btn_url %}
+                <a href="{{ block.btn_url }}" target="_blank" class="nz-link-btn">{{ block.btn_text }}</a>
+              {% endif %}
+              {% if block.links %}
+                <div class="nz-apps-box">
+                  <strong>📱 Додатки для смартфонів:</strong><br>
+                  {% for link in block.links %}
+                    <a href="{{ link.url }}" target="_blank" class="nz-app-link">{{ link.name }}</a><br>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% elif block.nz_style == "steps" %}
+            <div class="nz-section">
+              <h3 class="nz-title">{{ block.title }}</h3>
+              <div class="nz-desc">{{ block.content | markdown | safe }}</div>
+              {% if block.steps %}
+                <ol class="step-list">
+                  {% for s in block.steps %}
+                    <li>{{ s.step }}</li>
+                  {% endfor %}
+                </ol>
+              {% endif %}
+              {% if block.image %}
+                <img src="{{ block.image }}" alt="Скріншот" class="screenshot-img" onerror="this.style.display='none'">
+              {% endif %}
+            </div>
+          {% elif block.nz_style == "instruction" %}
+            <div class="nz-section nz-instruction-box">
+              <h3 class="nz-title nz-instruction-title">{{ block.title }}</h3>
+              <div class="nz-instruction-desc">{{ block.content | markdown | safe }}</div>
+              {% if block.btn_text and block.btn_url %}
+                <a href="{{ block.btn_url }}" target="_blank" class="nz-link-btn nz-instruction-btn">{{ block.btn_text }}</a>
+              {% endif %}
+              {% if block.links %}
+                <p class="nz-support-text">
+                  Більше інформації:
+                  {% for link in block.links %}
+                    <a href="{{ link.url }}" target="_blank" class="nz-support-link">{{ link.name }}</a>
+                  {% endfor %}
+                </p>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+    {# 19. Картка регламенту #}
+    {% elif block.type == "regulation_card_block" %}
+      <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+          <a href="{{ block.url }}" target="_blank" class="regulation-card">
+            <div class="regulation-icon-box">
+              {% if block.icon and (block.icon.startsWith('fa') or block.icon.startsWith('icon')) %}
+                <i class="{{ block.icon }}"></i>
+              {% else %}
+                <span>{{ block.icon or '⚖️' }}</span>
+              {% endif %}
+            </div>
+            <div class="regulation-content-wrapper">
+              <span class="regulation-title">{{ block.title }}</span>
+              <span class="regulation-subtitle">{{ block.subtitle }}</span>
+            </div>
+            <div class="regulation-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    {# 20. Картки днів хакатону #}
+    {% elif block.type == "day_cards_block" %}
+      <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+          <div class="day-cards-grid">
+            {% for day in block.days %}
+              <div class="day-card">
+                <div class="day-card-header">
+                  <div class="day-name">{{ day.day_name }}</div>
+                  <div class="day-date">{{ day.day_date }}</div>
+                </div>
+                <div class="day-card-body">
+                  <h4>{{ day.title }}</h4>
+                  <p>{{ day.desc }}</p>
+                  {% if day.activities_csv %}
+                    <ul>
+                      {% for act in day.activities_csv.split(',') %}
+                        <li>{{ act }}</li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+    {# 21. Виділений текстовий блок #}
+    {% elif block.type == "highlight_box_block" %}
+      <section class="section" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="container">
+          <div class="highlight-box box-border-{{ block.box_style or 'gray' }}">
+            {{ block.content | markdown | safe }}
+          </div>
+        </div>
+      </section>
+
+    {# 22. Блок контактів #}
+    {% elif block.type == "contacts_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          <div class="contacts-container">
+            <div class="contact-card">
+              <div class="gymnasia-name">
+                {{ block.gymnasia_name | replace("\n", "<br>") | safe }}
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <div>
+                  <span class="contact-label">Поштова адреса:</span>
+                  {{ block.address | replace("\n", "<br>") | safe }}
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <div>
+                  <span class="contact-label">Телефон:</span>
+                  <a href="tel:{{ block.phone | replace(' ', '') | replace('(', '') | replace(')', '') | replace('-', '') }}" class="tel-link">{{ block.phone }}</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div>
+                  <span class="contact-label">E-mail:</span>
+                  <a href="mailto:{{ block.email }}" class="email-link">{{ block.email }}</a>
+                </div>
+              </div>
+            </div>
+            <div class="map-container">
+              <iframe class="map-frame" src="{{ block.map_url }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {# 23. Блок вакансій #}
+    {% elif block.type == "vacancies_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          <div class="vacancies-card">
+            <span class="vacancies-icon">{{ block.icon }}</span>
+            <h2 class="vacancies-title">{{ block.status_title }}</h2>
+            <div class="vacancies-text">
+              {{ block.text | markdown | safe }}
+            </div>
+            {% if block.note %}
+              <p class="vacancies-note">{{ block.note }}</p>
+            {% endif %}
+            {% if block.updated_date %}
+              <p style="margin-top: 10px; color: #aaa; font-size: 0.85rem;">
+                🕒 Оновлено: {{ block.updated_date }}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+    {# 24. Блок зарахування до 1 класу #}
+    {% elif block.type == "enrollment_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          {% if block.important_text %}
+            <div class="important-banner">
+              ⚠️ <strong>{{ block.important_text }}</strong>
+            </div>
+          {% endif %}
+          <div class="enrollment-special-block">
+            {% for case in block.cases %}
+              <div class="enrollment-case">
+                <div class="enrollment-case-label">
+                  <span>{{ case.label | markdownInline | safe }}</span>
+                </div>
+                <div class="enrollment-case-content">
+                  <div class="enrollment-subtitle">{{ case.subtitle }}</div>
+                  {% for group in case.groups %}
+                    <div class="enrollment-group">
+                      <div class="enrollment-group-label {% if group.type == 'мають' %}have{% else %}not-have{% endif %}">
+                        {{ group.type }}
+                      </div>
+                      <ul class="enrollment-doc-list">
+                        {% for doc in group.docs %}
+                          <li>{{ doc }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% if case.note %}
+                <div class="{% if loop.first %}aikom-note{% else %}director-note{% endif %}">
+                  {{ case.note | markdown | safe }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+    {# 25. Блок прозорості #}
+    {% elif block.type == "prozorist_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          <div class="links-container">
+            <a href="/documents/" class="doc-link"><span class="doc-icon">📜</span> Статутні документи закладу</a>
+            <a href="#" class="doc-link" id="openReports"><span class="doc-icon">📊</span> Звіти директора гімназії <span class="report-note">(Натисніть для вибору)</span></a>
+            <a href="/atestacia/" class="doc-link"><span class="doc-icon">🎓</span> Атестація педагогічних працівників</a>
+            <a href="/samoanaliz/" class="doc-link"><span class="doc-icon">🔍</span> Самоаналіз діяльності</a>
+            <a href="/finances/" class="doc-link"><span class="doc-icon">💰</span> Фінансова прозорість</a>
+          </div>
+        </div>
+      </section>
+
+    {# 26. Промо-картка з кнопкою #}
+    {% elif block.type == "promo_card_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h1 class="page-title">{{ block.title }}</h1>{% endif %}
+          {% if block.style == 'Синій (критерії)' %}
+            <div class="criteria-card">
+              <div class="criteria-icon-wrap">
+                {% if block.icon and (block.icon.startsWith('fa') or block.icon.startsWith('icon')) %}
+                  <i class="{{ block.icon }} criteria-icon"></i>
+                {% else %}
+                  <span class="criteria-icon">{{ block.icon }}</span>
+                {% endif %}
+              </div>
+              <h2 class="criteria-title">{{ block.subtitle }}</h2>
+              <p class="criteria-text">{{ block.text }}</p>
+              <a href="{{ block.btn_url }}" target="_blank" class="criteria-btn">
+                {% if block.icon and (block.icon.startsWith('fa') or block.icon.startsWith('icon')) %}
+                  <i class="fab fa-google-drive"></i>
+                {% endif %}
+                {{ block.btn_text }}
+              </a>
+              {% if block.note %}
+                <p style="margin-top: 15px; color: #666; font-size: 0.9em;">{{ block.note }}</p>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="card mx-auto history-card">
+              {% if block.icon and (block.icon.startsWith('fa') or block.icon.startsWith('icon')) %}
+                <i class="{{ block.icon }} animate-float history-icon"></i>
+              {% else %}
+                <span class="animate-float history-icon">{{ block.icon }}</span>
+              {% endif %}
+              <h2 class="history-subtitle">{{ block.subtitle }}</h2>
+              <p class="history-text">{{ block.text }}</p>
+              {% if block.btn_url %}
+                <a href="{{ block.btn_url }}" target="_blank" class="btn">
+                  {{ block.btn_text }}
+                </a>
+              {% endif %}
+              {% if block.note %}
+                <p class="history-note">{{ block.note }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+    {# 27. Блок режиму роботи #}
+    {% elif block.type == "working_mode_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          <div class="mode-section">
+            <h3 class="mode-title">Тривалість навчального року</h3>
+            <div class="mode-intro">
+              {{ block.intro | markdown | safe }}
+            </div>
+            <h3 class="mode-title">Структура {{ block.year_title }} навчального року</h3>
+            <p>Навчання організовуються за семестровою системою:</p>
+            <ul class="dates-list">
+              {% for semester in block.semesters %}
+                <li><strong>{{ semester.name }}:</strong> {{ semester.period }}</li>
+              {% endfor %}
+            </ul>
+            <p>Протягом навчального року для учнів проводяться канікули:</p>
+            <ul class="dates-list green-border-left">
+              {% for holiday in block.holidays %}
+                <li><strong>{{ holiday.name }}:</strong> {{ holiday.period }}</li>
+              {% endfor %}
+            </ul>
+            <h3 class="mode-title">Форма організації освітнього процесу</h3>
+            <div class="distance-text">
+              {{ block.format_text | markdown | safe }}
+            </div>
+            {% if block.emergency_contacts %}
+              <div class="emergency-box">
+                <h4 class="emergency-title">⚠️ У разі виникнення надзвичайних ситуацій</h4>
+                <p>Всім працівникам діяти у відповідності до плану дій під час надзвичайних ситуацій. Виклик відповідних служб здійснюється за номерами:</p>
+                <ul class="emergency-list">
+                  {% for contact in block.emergency_contacts %}
+                    <li><span class="emergency-icon">{{ contact.icon }}</span> {{ contact.label }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+            {% if block.admin_hours %}
+              <h3 class="mode-title" style="margin-top: 30px;">🕐 Час роботи адміністрації</h3>
+              <ul class="dates-list">
+                {% for hour in block.admin_hours %}
+                  <li><strong>{{ hour.days }}:</strong> {{ hour.hours }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if block.admin_note %}
+              <p style="margin-top: 10px; color: var(--text-light); font-size: 0.95rem;">
+                {{ block.admin_note }}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+    {# 28. Блок учнівського самоврядування #}
+    {% elif block.type == "student_government_block" %}
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title">{{ block.title }}</h1>
+          <div class="president-section">
+            <div class="pres-photo-box">
+              <img src="{{ block.president_photo }}" alt="{{ block.president_name }}" class="pres-photo" onerror="this.src='/assets/img/logo.png'">
+            </div>
+            <div class="pres-info">
+              <span class="pres-label">Президент учнівського самоврядування</span>
+              <div class="pres-name">{{ block.president_name }}</div>
+              <div class="pres-quote">
+                "{{ block.president_quote }}"
+              </div>
+            </div>
+          </div>
+          <h2 class="gov-subtitle">{{ block.gov_subtitle }}</h2>
+          <div class="ministries-grid">
+            {% for min in block.ministries %}
+              <div class="ministry-card {{ min.style_class }}">
+                <div class="min-title"><span class="min-icon">{{ min.icon }}</span> {{ min.name }}</div>
+                <ul class="student-list">
+                  {% for member in min.members %}
+                    <li>{{ member }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endfor %}
+          </div>
+          {% if block.group_photo %}
+            <div class="group-photo-container">
+              <img src="{{ block.group_photo }}" alt="Учнівське самоврядування" class="group-photo" onerror="this.style.display='none'">
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+    {# 29. Інформаційна плашка / Повідомлення #}
+    {% elif block.type == "info_alert_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h1 class="page-title">{{ block.title }}</h1>{% endif %}
+          <div class="info-block {% if block.style == 'Синій (підручники)' %}info-block-blue{% elif block.style == 'Зелений (атестація)' %}atestacia-info-block{% else %}info-block-orange{% endif %}">
+            {% if block.subtitle %}
+              <h3 class="{% if block.style == 'Зелений (атестація)' %}atestacia-title-desc{% else %}distance-welcome{% endif %}" style="text-align: center; margin-bottom: 15px;">{{ block.subtitle }}</h3>
+            {% endif %}
+            <div class="{% if block.style == 'Зелений (атестація)' %}atestacia-p{% else %}distance-text{% endif %}">
+              {{ block.content | markdown | safe }}
+            </div>
+            {% if block.btn_text and block.btn_url %}
+              <div style="text-align: center; margin: 40px 0;">
+                <a href="{{ block.btn_url }}" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">
+                  {{ block.btn_text }}
+                </a>
+                {% if block.btn_note %}
+                  <p style="margin-top: 15px; color: #666; font-size: 0.9em;">{{ block.btn_note }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if block.signature %}
+              <p class="distance-signature" style="text-align: right; font-style: italic; margin-top: 20px;">{{ block.signature }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+    {# 30. Блок правил та списків #}
+    {% elif block.type == "rules_list_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.style == 'Декларація (центрирований заголовок)' %}
+            <div class="content-block" {% if block.accent_orange %}style="border-top: 5px solid var(--accent-orange);"{% endif %}>
+              <div class="section-header-centered">
+                <h2 {% if block.accent_orange %}style="color: var(--accent-orange);"{% endif %}>{{ block.title }}</h2>
+                <div class="line" {% if block.accent_orange %}style="background: var(--accent-orange);"{% endif %}></div>
+              </div>
+              <ul class="{% if block.accent_orange %}duties-list{% else %}rights-list{% endif %}">
+                {% for rule in block.rules %}
+                  <li>
+                    {% if rule.highlight_title %}
+                      <span class="highlight-title">{{ rule.highlight_title }}:</span>
+                    {% endif %}
+                    {{ rule.text | markdownInline | safe }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% elif block.style == 'Закон / Права (картка з рамкою)' %}
+            <div class="law-section {% if block.accent_orange %}orange-border{% endif %}">
+              <h3 class="law-title {% if block.accent_orange %}orange-text{% endif %}">{{ block.title }}</h3>
+              <ul class="check-list">
+                {% for rule in block.rules %}
+                  <li>
+                    {% if rule.highlight_title %}
+                      <strong>{{ rule.highlight_title }}:</strong>
+                    {% endif %}
+                    {{ rule.text | markdownInline | safe }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% else %}
+            <div class="rules-section">
+              <h3 class="rules-title">{{ block.title }}</h3>
+              {% if block.list_type == 'нумерований' %}
+                <ol class="rules-list">
+                  {% for rule in block.rules %}
+                    <li>
+                      {% if rule.highlight_title %}
+                        <strong>{{ rule.highlight_title }}:</strong>
+                      {% endif %}
+                      {{ rule.text | markdownInline | safe }}
+                    </li>
+                  {% endfor %}
+                </ol>
+              {% else %}
+                <ul class="{% if block.accent_orange %}duties-list{% else %}rights-list{% endif %}">
+                  {% for rule in block.rules %}
+                    <li>
+                      {% if rule.highlight_title %}
+                        <span class="highlight-title">{{ rule.highlight_title }}:</span>
+                      {% endif %}
+                      {{ rule.text | markdownInline | safe }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+    {# 31. Блок профілю спеціаліста #}
+    {% elif block.type == "staff_profile_block" %}
+      <section class="section">
+        <div class="container">
+          {% if block.title %}<h1 class="page-title">{{ block.title }}</h1>{% endif %}
+          <div class="psychologist-hero">
+            <img src="{{ block.photo }}" alt="{{ block.name }}" class="psy-photo" onerror="this.src='/assets/img/logo.png'">
+            <div class="psy-info">
+              <h2>{{ block.name }}</h2>
+              <span class="psy-role">{{ block.role }}</span>
+              <div class="psy-theme">
+                {{ block.content | markdown | safe }}
+              </div>
+              {% if block.contact_box_title and block.contact_box_bullets %}
+                <div class="contact-box" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #28a745;">
+                  <h3 style="color: #28a745; margin-bottom: 15px;">{{ block.contact_box_title }}</h3>
+                  <ul class="custom-list">
+                    {% for bullet in block.contact_box_bullets %}
+                      <li>{{ bullet }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              {% if block.btn_text and block.btn_url %}
+                <div style="margin-top: 25px;">
+                  <a href="{{ block.btn_url }}" target="_blank" class="blog-btn">
+                    {{ block.btn_text }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+{% macro render_modals(blocks) %}
+  {% for block in blocks %}
+    {% if block.type == "prozorist_block" %}
+      <div class="modal-overlay" id="reportsModal">
+        <div class="modal-window">
+          <span class="close-modal" id="closeModal">&times;</span>
+          <h3 class="modal-title">Оберіть рік звіту</h3>
+          {% for report in block.reports %}
+            <a href="{{ report.url }}" target="_blank" class="year-btn">{{ report.year }} рік</a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Антибулінгова компанія</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Українська класична гімназія Лубенської міської ради — офіційний сайт. Новини, розклад, документи.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Антибулінгова компанія">
+    <meta property="og:description" content="Українська класична гімназія Лубенської міської ради — офіційний сайт. Новини, розклад, документи.">
+    <meta property="og:image" content="/assets/img/logo.png">
+    <meta property="og:url" content="https://lubny-ukg.co.ua/antibullying.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Українська класична гімназія — м. Лубни">
+    <meta property="og:locale" content="uk_UA">
+    
+    <link rel="canonical" href="https://lubny-ukg.co.ua/antibullying.html">
+    
+    <!-- Фавікон -->
+    <link rel="icon" href="/assets/img/logo.png" type="image/png">
+    
+    <!-- Шрифти Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome (іконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Основний файл стилів -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Сторінкові вбудовані стилі (якщо є) -->
+    
+</head>
+<body class="inner-page">
+
+    <!-- Хедер сайту -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="/assets/img/logo.png" alt="Лого" class="logo-img">
+                <div class="logo-text"><span>Українська класична гімназія</span><small>Лубенської міської ради</small></div>
+            </a>
+            
+            <div class="burger" id="burger-btn">
+                <span></span><span></span><span></span>
+            </div>
+
+            <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+                <div class="close-menu-btn" id="close-btn" aria-label="Close menu">&times;</div>
+
+                <ul class="nav-list" role="menubar">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">🏠 Головна</a>
+                    </li>
+
+                    <li class="nav-item dropdown" role="none">
+                        <span class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Про гімназію <span class="arrow">▾</span></span>
+                        <div class="dropdown-menu mega-menu menu-4-col" role="menu" aria-label="About Gymnasium menu">
+                            <div class="mega-column">
+                                <h4>Адміністрація</h4>
+                                <a href="management.html">👔 Управління</a>
+                                <a href="prozorist.html">🔍 Прозорість</a>
+                                <a href="documents.html">📂 Документи</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>Історія</h4>
+                                <a href="history.html">📜 Історія</a>
+                                <a href="memory.html">🕯️ Сторінка пам'яті</a>
+                                <a href="https://museum.lubnyrada.gov.ua/memorial/" target="_blank">🏛️ Віртуальний меморіал</a>
+                                <h4>Спільноти</h4>
+                                <a href="teachers.html">👨‍🏫 Професійні спільноти вчителів</a>
+                                <a href="humanities.html">📖 Суспільно-гуманітарні науки</a>
+                                <a href="math-science.html">🔬 Природничо-математичні науки</a>
+                                <a href="arts-health.html">🎨 Художньо-оздоровчий цикл</a>
+                                <a href="class-teachers.html">👥 Класні керівники</a>
+                                <a href="primary-school.html">🎒 Початкова школа</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>Соціально-психологічна служба</h4>
+                                <a href="social-pedagogue.html">🤝 Соц. педагог</a>
+                                <a href="psychologist.html">🧠 Психолог</a>
+                                <a href="psychology-support.html">💙 Підтримка</a>
+                                <a href="antibullying.html" class="link-danger">🛑 Антибулінг</a>
+                                <a href="protydiya-nasylstvu.html">🛡️ Протидія насильству</a>
+                                <h4>Центри</h4>
+                                <a href="library.html">📚 Бібліотека</a>
+                                <a href="medical-service.html">🏥 Медична служба</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>Інформація</h4>
+                                <a href="staff.html">👥 Кадри</a>
+                                <a href="vacancies.html">💼 Вакансії</a>
+                                <a href="working-mode.html">⏰ Режим роботи</a>
+                                <a href="contacts.html">📍 Контакти</a>
+                                <a href="https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/" target="_blank">📰 Facebook</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown" role="none">
+                        <span class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Освітнє середовище <span class="arrow">▾</span></span>
+                        <div class="dropdown-menu simple-dropdown" role="menu" aria-label="Educational environment menu">
+                            <a href="academic-integrity.html">🎓 Академічна доброчесність</a>
+                            <a href="https://drive.google.com/file/d/14JuSN1j2vk4cy-jlR9fAGMiRzjNHjoCp/view?usp=sharing" target="_blank">📉 Внутрішня система якості</a>
+                            <a href="atestacia.html">🎖️ Атестація</a>
+                            <a href="samoanaliz.html">📊 Самоаналіз освітньої діяльності</a>
+                            <a href="scientific-works.html">🔬 Наукові роботи</a>
+                            <a href="inclusive-education.html">🤝 Інклюзивна освіта</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown" role="none">
+                        <span class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Виховна робота <span class="arrow">▾</span></span>
+                        <div class="dropdown-menu simple-dropdown" role="menu" aria-label="Educational work menu">
+                            <a href="student-government.html">🗳️ Самоврядування</a>
+                            <a href="educational-work.html">🌻 Напрямки виховної роботи</a>
+                            <a href="circles.html">🎨 Гуртки та секції</a>
+                            <a href="hackathon.html">💡 Хакатон</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown" role="none">
+                        <span class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Учням <span class="arrow">▾</span></span>
+                        <div class="dropdown-menu mega-menu menu-3-col" role="menu" aria-label="Students menu">
+                            <div class="mega-column">
+                                <h4>Початкова школа</h4>
+                                <a href="schedule-primary.html">🗓️ Розклад</a>
+                                <a href="programs-primary.html">📚 Програми</a>
+                                <a href="books-primary.html">📖 Підручники</a>
+                                <a href="evaluation-criteria-primary.html">📊 Критерії оцінювання</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>Середня школа</h4>
+                                <a href="schedule-middle.html">🗓️ Розклад</a>
+                                <a href="programs-middle.html">📚 Програми</a>
+                                <a href="books-middle.html">📖 Підручники</a>
+                                <a href="evaluation-criteria.html">📊 Критерії оцінювання</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>Важливе</h4>
+                                <a href="rights-students.html">⚖️ Декларація прав та обовʼязків</a>
+                                <a href="electronic-diary.html">💻 Щоденник</a>
+                                <a href="distance-learning.html">🌐 Дистанційне</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown" role="none">
+                        <span class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Батькам <span class="arrow">▾</span></span>
+                        <div class="dropdown-menu simple-dropdown" role="menu" aria-label="Parents menu">
+                            <a href="parents-rights.html">⚖️ Права батьків</a>
+                            <a href="territory.html">🗺️ Територія обслуговування</a>
+                            <a href="admission.html">📝 Умови вступу до 1 класу</a>
+                            <a href="parents-info.html">ℹ️ Інформація</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="appeal.html" class="nav-link appeal-nav-btn">💬 Звернення</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основний контент сторінки -->
+    <main>
+        
+            
+            
+  
+    
+    
+      <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+          <div class="definition-box">
+            <h3 class="definition-title corruption">STOP БУЛІНГ!</h3>
+            <p class="academic-definition-desc">Булінг (цькування) — це діяння, яке не має виправдання. Наша гімназія —
+                        територія безпеки та поваги.
+</p>
+          </div>
+        </div>
+      </section>
+
+    
+    
+  
+    
+    
+      <section class="section">
+        <div class="container">
+          <h2 class="page-title">Плани заходів</h2>
+          <p class="samoanaliz-intro">Оберіть навчальний рік для перегляду планів заходів:</p>
+
+          <div class="year-tabs">
+            
+              <button class="year-tab active" data-year="tabsdoc-2023-2024-n-r">2023-2024 н.р.</button>
+            
+              <button class="year-tab " data-year="tabsdoc-2024-2025-n-r">2024-2025 н.р.</button>
+            
+              <button class="year-tab " data-year="tabsdoc-2025-2026-n-r">2025-2026 н.р.</button>
+            
+          </div>
+
+          
+            <div class="year-content active" id="year-tabsdoc-2023-2024-n-r">
+              <div class="links-container">
+                
+                  <a href="https://drive.google.com/file/d/15F698ZAmuHNCC7rnWrgumiwyyNRyl34o/view?usp=sharing" target="_blank" class="doc-link">
+                    <div class="doc-link-col">
+                      <span>План заходів щодо профілактики булінгу</span>
+                      <small class="doc-date">(2023-2024 н.р.)</small>
+                    </div>
+                  </a>
+                
+              </div>
+            </div>
+          
+            <div class="year-content " id="year-tabsdoc-2024-2025-n-r">
+              <div class="links-container">
+                
+                  <a href="https://drive.google.com/file/d/1BDrtJ1n5JSYWDp6ogkPH38c5SCgQ35Xp/view?usp=sharing" target="_blank" class="doc-link">
+                    <div class="doc-link-col">
+                      <span>План заходів щодо профілактики булінгу</span>
+                      <small class="doc-date">(2024-2025 н.р.)</small>
+                    </div>
+                  </a>
+                
+              </div>
+            </div>
+          
+            <div class="year-content " id="year-tabsdoc-2025-2026-n-r">
+              <div class="links-container">
+                
+                  <a href="https://drive.google.com/file/d/1G1RWZJ9zgyCgr4u038g4IiPNRIfPA5T_/view?usp=sharing" target="_blank" class="doc-link">
+                    <div class="doc-link-col">
+                      <span>Наказ про запобігання булінгу</span>
+                      <small class="doc-date">(2025-2026 н.р.)</small>
+                    </div>
+                  </a>
+                
+                  <a href="https://drive.google.com/file/d/1KwQyfVc_rB0ZZoRcVsIUCQWAUJ8KQ8H-/view?usp=sharing" target="_blank" class="doc-link">
+                    <div class="doc-link-col">
+                      <span>План заходів із запобігання та протидії булінгу</span>
+                      <small class="doc-date">(2025-2026 н.р.)</small>
+                    </div>
+                  </a>
+                
+              </div>
+            </div>
+          
+        </div>
+      </section>
+
+    
+    
+  
+    
+    
+      <section class="section">
+        <div class="container">
+          <h2 class="page-title">Загальна інформація та законодавство</h2>
+          
+          
+            <div class="docs-section">
+              
+                <a href="https://drive.google.com/file/d/1tcNpu-g3nunzlvmdMQhbCpT98-Jm5dEZ/view?usp=sharing" target="_blank" class="doc-alert-card">
+                  <div class="doc-alert-card-inner">
+                    <span class="doc-icon">🚨</span>
+                    <span class="doc-name">ПОРЯДОК реагування на випадки булінгу (цькування)</span>
+                  </div>
+                  <span class="doc-arrow">➝</span>
+                </a>
+              
+                <a href="https://drive.google.com/file/d/19S-KLOlLyVn23BcI7mpLsFgZhoIwIVu1/view?usp=sharing" target="_blank" class="doc-alert-card">
+                  <div class="doc-alert-card-inner">
+                    <span class="doc-icon">⚖️</span>
+                    <span class="doc-name">Відповідальність за булінг (Законодавство)</span>
+                  </div>
+                  <span class="doc-arrow">➝</span>
+                </a>
+              
+                <a href="https://drive.google.com/file/d/1ifNSdbhJIn0POq5faWTDE7lNWHpLBDeS/view?usp=sharing" target="_blank" class="doc-alert-card">
+                  <div class="doc-alert-card-inner">
+                    <span class="doc-icon">📘</span>
+                    <span class="doc-name">Булінг у дитячому середовищі: причини та шляхи подолання</span>
+                  </div>
+                  <span class="doc-arrow">➝</span>
+                </a>
+              
+                <a href="https://drive.google.com/file/d/15GCQbE7bNM0qZa_F2gePhl9hYoVgxCsj/view?usp=sharing" target="_blank" class="doc-alert-card">
+                  <div class="doc-alert-card-inner">
+                    <span class="doc-icon">📋</span>
+                    <span class="doc-name">Безпечне освітнє середовище: нормативно-правове забезпечення та
+                                    алгоритми дій для директора
+</span>
+                  </div>
+                  <span class="doc-arrow">➝</span>
+                </a>
+              
+            </div>
+
+          
+        </div>
+      </section>
+
+    
+    
+  
+    
+    
+      <section class="section">
+        <div class="container">
+          
+          
+
+          
+            <div class="info-grid">
+              
+                <div class="info-card card-red">
+                  <div class="info-title">
+                    <span class="info-title-icon">⚠️</span>
+                    Види булінгу
+                  </div>
+                  
+                  
+                    <ul class="bullet-list">
+                      
+                        <li><strong>Фізичний:</strong> штовхання, підніжки, бійки, псування речей.</li>
+                      
+                        <li><strong>Економічний:</strong> вимагання грошей, крадіжки, пошкодження одягу.</li>
+                      
+                        <li><strong>Психологічний:</strong> погрози, приниження, ігнорування, маніпуляції.</li>
+                      
+                        <li><strong>Сексуальний:</strong> образливі жести, прізвиська, торкання.</li>
+                      
+                        <li><strong>Кібербулінг:</strong> цькування через соцмережі, поширення фото/відео.</li>
+                      
+                    </ul>
+                  
+                </div>
+              
+                <div class="info-card card-green">
+                  <div class="info-title">
+                    <span class="info-title-icon">✅</span>
+                    Що робити, якщо тебе булять?
+                  </div>
+                  
+                  
+                    <ul class="bullet-list">
+                      
+                        <li>Не мовчи! Розкажи батькам, вчителю або шкільному психологу.</li>
+                      
+                        <li>Ігноруй кривдника, не показуй свій страх чи злість (цього він і чекає).</li>
+                      
+                        <li>Зберігай докази (скріншоти переписки, фото).</li>
+                      
+                        <li>Пам'ятай: ти не винен! Проблема в агресорі.</li>
+                      
+                    </ul>
+                  
+                </div>
+              
+                <div class="info-card card-blue">
+                  <div class="info-title">
+                    <span class="info-title-icon">🚩</span>
+                    Ознаки булера
+                  </div>
+                  
+                    <p class="bully-description">
+Булери часто самостверджуються за рахунок інших, хочуть бути лідерами, не вміють
+співчувати,
+агресивні та імпульсивні. Але пам'ятай: <strong>булер – не герой</strong>, це
+правопорушник.
+</p>
+                  
+                  
+                </div>
+              
+            </div>
+          
+        </div>
+      </section>
+
+    
+    
+  
+    
+    
+      <section class="section" style="padding-top: 0;">
+        <div class="container">
+          <div class="hotlines-box">
+            <h2 class="hotline-section-title">📞 Потрібна допомога?</h2>
+            <p>Телефонуй анонімно та безкоштовно</p>
+
+            <div class="hotline-grid">
+              
+                <div class="hotline-item">
+                  <span class="hotline-number">116 111</span>
+                  <span>Національна дитяча &quot;гаряча&quot; лінія</span>
+                </div>
+              
+                <div class="hotline-item">
+                  <span class="hotline-number">0 800 500 225</span>
+                  <span>З мобільного або стаціонарного</span>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
+    
+  
+
+        
+    </main>
+
+    <!-- Футер сайту -->
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Column 1: Info -->
+                    <div class="footer-col info-col">
+                        <div class="footer-brand">
+                            <img src="/assets/img/logo.png" alt="Логотип" class="footer-logo">
+                            <div class="brand-text">
+                                <h3>УКРАЇНСЬКА КЛАСИЧНА ГІМНАЗІЯ</h3>
+                                <p>Лубенської міської ради Лубенського району Полтавської області</p>
+                            </div>
+                        </div>
+                        <p class="footer-desc">Сучасний освітній простір, де кожна дитина розкриває свій потенціал.</p>
+                        <div class="footer-socials">
+                            <a href="https://www.facebook.com/p/%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0-%D0%BA%D0%BB%D0%B0%D1%81%D0%B8%D1%87%D0%BD%D0%B0-%D0%B3%D1%96%D0%BC%D0%BD%D0%B0%D0%B7%D1%96%D1%8F-100076001883917/" target="_blank" class="social-btn facebook">
+                                <span class="fb-icon">f</span> Facebook
+                            </a>
+                            <a href="mailto:school8lub_@ukr.net" class="social-btn email">
+                                <span class="email-icon">✉️</span> Написати нам
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Contacts -->
+                    <div class="footer-col contacts-col">
+                        <h4 class="footer-heading">КОНТАКТИ</h4>
+                        <ul class="footer-contacts-list">
+                            <li>
+                                <span class="icon">📍</span>
+                                <span>Україна, Полтавська область,<br> м.Лубни, просп. Володимирський, 104/1</span>
+                            </li>
+                            <li>
+                                <span class="icon">📞</span>
+                                <a href="tel:0536177507">(05361) 77-507</a>
+                            </li>
+                            <li>
+                                <span class="icon">📧</span>
+                                <a href="mailto:school8lub_@ukr.net">school8lub_@ukr.net</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Map -->
+                    <div class="footer-col map-col">
+                        <h4 class="footer-heading">МИ НА КАРТІ</h4>
+                        <div class="footer-map-wrapper">
+                            <iframe 
+                                src="https://maps.google.com/maps?q=Лубенська+загальноосвітня+школа+№8&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                                width="100%" 
+                                height="200" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright-bar">
+                    <p>&copy; 2026 Українська класична гімназія. Всі права захищені.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипти -->
+    <script src="/assets/js/components.js"></script>
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>
